@@ -63,3 +63,5 @@ gem "devise", "~> 4.8"
 gem "annotate", "~> 3.1", :group => :development
 
 gem "faker", "~> 2.19", :groups => [:development, :test]
+
+gem "kaminari", "~> 1.2"
