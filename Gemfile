@@ -61,3 +61,5 @@ gem "hotwire-rails", "~> 0.1.3"
 gem "devise", "~> 4.8"
 
 gem "annotate", "~> 3.1", :group => :development
+
+gem "faker", "~> 2.19", :groups => [:development, :test]
