@@ -1,0 +1,12 @@
+<%= turbo_frame_tag 'room_form' do %>
+  <%= form_with(model: room) do |form| %>
+    <div class='flex flex-row items-stretch space-x-2'>
+      <div class='flex-auto'>
+        <%= form.text_field :name, placeholder: 'Room Name', class: 'w-full ring-0 focus:ring-0 text-sm' %>
+      </div>
+      <div class='flex-none w-1/6'>
+        <%= form.submit nil, class: 'w-full cursor-pointer h-full bg-blue-500 text-white' %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

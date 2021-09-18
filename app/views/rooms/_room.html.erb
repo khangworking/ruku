@@ -1,0 +1,10 @@
+<%= turbo_frame_tag dom_id(room) do %>
+  <div class='flex flex-row justify-between items-center px-2 border border-white duration-200 hover:border hover:border-gray-700'>
+    <div class="py-3">
+      <%= link_to room.name, room, 'data-turbo-frame': '_top' %>
+    </div>
+    <div>
+      <%= duration_display(room) %>
+    </div>
+  </div>
+<% end %>
