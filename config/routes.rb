@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   devise_for :users
   resources :rooms
   resources :users, only: :show
+  resources :chat_rooms
   root to: 'home#index'
 end
