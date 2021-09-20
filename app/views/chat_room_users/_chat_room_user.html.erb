@@ -1,5 +1,6 @@
 <%= turbo_frame_tag dom_id(chat_room_user) do %>
-  <div class='py-1 px-2 cursor-pointer hover:bg-gray-300 hover:bg-opacity-20'>
+  <div class='py-1 px-2 cursor-pointer hover:bg-gray-300 hover:bg-opacity-20 flex flex-row justify-between items-center'>
     <%= chat_room_user.chat_room.chatting_with(user).fullname %>
+    <%= link_to 'remove', chat_room_path(chat_room_user.chat_room), method: :delete %>
   </div>
 <% end %>

@@ -22,6 +22,16 @@ class ChatRoomsController < ApplicationController
     end
   end
 
+  def destroy
+    chat_room = ChatRoom.find(params[:id])
+    chat_room.destroy
+    respond_to do |format|
+      format.html { redirect_to rooms_url, notice: "Room was successfully destroyed." }
+      format.json { head :no_content }
+      format.turbo_stream
+    end
+  end
+
   private
 
   def chat_room_params
