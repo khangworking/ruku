@@ -12,4 +12,12 @@ class ChatRoom < ApplicationRecord
   has_many :users, through: :chat_room_users
 
   accepts_nested_attributes_for :chat_room_users, reject_if: :all_blank
+
+  before_validation :set_default
+
+  private
+
+  def set_default
+    self.name ||= 'private room'
+  end
 end

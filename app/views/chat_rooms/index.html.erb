@@ -3,6 +3,7 @@
 <div class='w-screen h-screen'>
   <div class='flex flex-row items-stretch h-full divide-x divide-gray-200'>
     <div class='flex-none w-1/4 h-full'>
+      <%= render 'form', new_chat_room: @new_chat_room, user: current_user %>
       <%= turbo_frame_tag :room_list do %>
         <%= render @chat_rooms %>
       <% end %>
