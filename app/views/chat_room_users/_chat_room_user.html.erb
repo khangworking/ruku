@@ -1,5 +1,5 @@
 <%= turbo_frame_tag dom_id(chat_room_user) do %>
   <div class='py-1 px-2 cursor-pointer hover:bg-gray-300 hover:bg-opacity-20'>
-    <%= chat_room_user.chat_room.name %>
+    <%= chat_room_user.chat_room.chatting_with(user).fullname %>
   </div>
 <% end %>

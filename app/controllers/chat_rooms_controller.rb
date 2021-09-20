@@ -3,7 +3,7 @@ class ChatRoomsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @chat_rooms = current_user.chat_room_users.includes(:chat_room)
+    @chat_rooms = current_user.chat_room_users.includes(:chat_room).order(created_at: :desc)
     @new_chat_room = new_chat_room
   end
 

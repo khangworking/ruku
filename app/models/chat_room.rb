@@ -15,6 +15,10 @@ class ChatRoom < ApplicationRecord
 
   before_validation :set_default
 
+  def chatting_with(from_user)
+    users.find { |user| from_user.id != user.id }
+  end
+
   private
 
   def set_default
