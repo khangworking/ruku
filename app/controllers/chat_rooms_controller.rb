@@ -3,7 +3,7 @@ class ChatRoomsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @chat_rooms = current_user.chat_room_users.includes(:chat_room).order(created_at: :desc)
+    @chat_rooms = current_user.chat_room_users.includes(chat_room: %i[latest_message users]).order(created_at: :desc)
     @new_chat_room = new_chat_room
   end
 
@@ -20,6 +20,11 @@ class ChatRoomsController < ApplicationController
         format.json { render json: @chat_room.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def show
+    @chat_room = ChatRoom.find(params[:id])
+    @messages = @chat_room.messages.includes(:user).page(1).per(25)
   end
 
   def destroy

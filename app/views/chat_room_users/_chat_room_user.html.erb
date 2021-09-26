@@ -1,6 +1,19 @@
 <%= turbo_frame_tag dom_id(chat_room_user) do %>
-  <div class='py-1 px-2 cursor-pointer hover:bg-gray-300 hover:bg-opacity-20 flex flex-row justify-between items-center'>
-    <%= chat_room_user.chat_room.chatting_with(user).fullname %>
+  <%= link_to chat_room_user.chat_room, method: :get do %>
+    <div class='flex flex-row items-center p-2 hover:bg-gray-100'>
+      <div class='flex flex-col space-y-1'>
+        <div class='font-bold'>
+          <%= chat_room_user.chat_room.chatting_with(user).fullname %>
+        </div>
+        <div class='text-gray-600'>
+          <%= chat_room_user.chat_room.latest_message&.body&.truncate(40) || 'Empty' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- <div class='py-1 px-2 cursor-pointer hover:bg-gray-300 hover:bg-opacity-20 flex flex-row justify-between items-center'>
+    <%= link_to chat_room_user.chat_room.chatting_with(user).fullname, chat_room_user.chat_room, method: :get %>
     <%= link_to 'remove', chat_room_path(chat_room_user.chat_room), method: :delete %>
-  </div>
+  </div> -->
 <% end %>

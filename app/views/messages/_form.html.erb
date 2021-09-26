@@ -1,0 +1,5 @@
+<%= form_for message do |f| %>
+  <%= f.hidden_field :chat_room_id %>
+  <%= f.text_field :body %>
+  <%= f.submit nil, class: 'hidden' %>
+<% end %>

@@ -1,13 +1,25 @@
+<%= content_for :body_classes, 'overflow-hidden' %>
+
 <%= turbo_stream_from [:chat_rooms, current_user.id] %>
 
-<div class='w-screen h-screen'>
-  <div class='flex flex-row items-stretch h-full divide-x divide-gray-200'>
-    <div class='flex-none w-1/4 h-full'>
-      <%= render 'form', new_chat_room: @new_chat_room, user: current_user %>
-      <%= turbo_frame_tag :room_list do %>
-        <%= render @chat_rooms, user: current_user %>
-      <% end %>
+<div class='w-screen h-screen flex flex-row items-stretch divide-x divide-gray-200'>
+  <div class='flex-none w-1/4'>
+    <%= turbo_frame_tag :room_list do %>
+      <%= render @chat_rooms, user: current_user %>
+    <% end %>
+  </div>
+  <div class='flex-auto flex flex-row items-stretch'>
+    <div class='flex-auto flex flex-col items-stretch divide-y divide-gray-200'>
+      <div class='flex-none h-12'>
+        <%= turbo_frame_tag :chat_room %>
+      </div>
+      <div class='flex-auto relative'>
+        <%= turbo_frame_tag :chat_room_messages %>
+      </div>
+      <div class='flex-none h-12'>
+        <%= turbo_frame_tag :input_message_body %>
+      </div>
     </div>
-    <div class='flex-auto'></div>
+    <div class='flex-none'></div>
   </div>
 </div>

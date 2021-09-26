@@ -5,5 +5,7 @@ import { application } from "./application";
 
 import HelloController from "./hello_controller";
 import InfinitedScrolling from "./infinited_srolling_controller";
+import ChatMessages from "./chat_messages_controller";
 application.register("hello", HelloController);
 application.register("infinited-scrolling", InfinitedScrolling);
+application.register("chat-messages", ChatMessages);
