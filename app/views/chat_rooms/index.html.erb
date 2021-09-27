@@ -1,6 +1,9 @@
 <%= content_for :body_classes, 'overflow-hidden' %>
 
 <%= turbo_stream_from [:chat_rooms, current_user.id] %>
+<% @chat_rooms.each do |chat_room_user| %>
+  <%= turbo_stream_from [:chat_room, chat_room_user.chat_room_id, :user, current_user.id] %>
+<% end %>
 
 <div class='w-screen h-screen flex flex-row items-stretch divide-x divide-gray-200'>
   <div class='flex-none w-1/4'>

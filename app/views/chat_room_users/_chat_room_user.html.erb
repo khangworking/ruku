@@ -5,15 +5,10 @@
         <div class='font-bold'>
           <%= chat_room_user.chat_room.chatting_with(user).fullname %>
         </div>
-        <div class='text-gray-600'>
-          <%= chat_room_user.chat_room.latest_message&.body&.truncate(40) || 'Empty' %>
-        </div>
+        <%= turbo_frame_tag "chat_room:#{chat_room_user.chat_room_id}:user:#{chat_room_user.user_id}:last_message" do %>
+          <%= render partial: 'messages/last_message', locals: { message: chat_room_user.chat_room.latest_message&.body } %>
+        <% end %>
       </div>
     </div>
   <% end %>
-
-  <!-- <div class='py-1 px-2 cursor-pointer hover:bg-gray-300 hover:bg-opacity-20 flex flex-row justify-between items-center'>
-    <%= link_to chat_room_user.chat_room.chatting_with(user).fullname, chat_room_user.chat_room, method: :get %>
-    <%= link_to 'remove', chat_room_path(chat_room_user.chat_room), method: :delete %>
-  </div> -->
 <% end %>

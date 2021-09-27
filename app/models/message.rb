@@ -19,17 +19,26 @@ class Message < ApplicationRecord
   belongs_to :chat_room
 
   # after_create_commit -> do
-  #   broadcast_action_later_to [:chat_room, chat_room_id], partial: 'messages/other_user_message', locals: { message: self }, action: :after, target: :new_messages
+  #   broadcast_action_later_to [:chat_room, chat_room_id, :user, user.id], partial: 'messages/last_message', locals: { message: body }, action: :update, target: "chat_room:#{chat_room_id}:user:#{user_id}:last_message"
   # end
 
   def broadcast_to_other(ignore_user_ids = [])
-    chat_room.users.where.not(id: Array(ignore_user_ids)).each do |user|
+    chat_room.users.each do |user|
+      if !user.id.in?(Array(ignore_user_ids))
+        broadcast_action_later_to(
+          [:chat_room, chat_room_id, :user, user.id], 
+          partial: 'messages/other_user_message', 
+          locals: { message: self },
+          action: :after,
+          target: :new_messages
+        )
+      end
       broadcast_action_later_to(
         [:chat_room, chat_room_id, :user, user.id], 
-        partial: 'messages/other_user_message', 
-        locals: { message: self },
-        action: :after,
-        target: :new_messages
+        partial: 'messages/last_message', 
+        locals: { message: body }, 
+        action: :update, 
+        target: "chat_room:#{chat_room_id}:user:#{user.id}:last_message"
       )
     end
   end

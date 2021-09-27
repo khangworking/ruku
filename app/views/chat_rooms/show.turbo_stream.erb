@@ -1,6 +1,3 @@
 <%= turbo_stream.update('chat_room', @chat_room) %>
 <%= turbo_stream.update('chat_room_messages', partial: 'messages', locals: { messages: @messages }) %>
-<%= turbo_stream.prepend 'chat_room_messages' do %>
-  <%= turbo_stream_from [:chat_room, @chat_room.id, :user, current_user.id] %>
-<% end %>
 <%= turbo_stream.update('input_message_body', partial: 'messages/form', locals: { message: Message.new(chat_room: @chat_room) }) %>
