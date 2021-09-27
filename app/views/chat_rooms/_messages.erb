@@ -1,0 +1,4 @@
+<div class='flex flex-col-reverse absolute top-0 left-0 w-full h-full overflow-auto' data-controller='chat-messages' data-action="scroll->chat-messages#scroll">
+  <%= turbo_frame_tag :new_messages %>
+  <%= render messages %>
+</div>
