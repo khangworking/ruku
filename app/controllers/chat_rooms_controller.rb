@@ -24,7 +24,17 @@ class ChatRoomsController < ApplicationController
 
   def show
     @chat_room = ChatRoom.find(params[:id])
-    @messages = @chat_room.messages.includes(:user).page(1).per(25)
+    @messages = @chat_room.messages.includes(:user).page(params[:page]).per(25)
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+      format.json do
+        render json: {
+          entries: render_to_string(@messages, formats: :html),
+          pagination: view_context.paginate(@messages)
+        }
+      end
+    end
   end
 
   def destroy
