@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
     else
       respond_to do |format|
         format.turbo_stream do
-          render turbo_stream: turbo_stream.append('input_message_body', partial: 'messages/error_message')
+          render turbo_stream: turbo_stream.prepend('input_message_body', partial: 'messages/error_message', locals: { errors: @message.errors.full_messages.join(', ') })
         end
       end
     end

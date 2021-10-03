@@ -18,9 +18,7 @@ class Message < ApplicationRecord
   belongs_to :user
   belongs_to :chat_room
 
-  # after_create_commit -> do
-  #   broadcast_action_later_to [:chat_room, chat_room_id, :user, user.id], partial: 'messages/last_message', locals: { message: body }, action: :update, target: "chat_room:#{chat_room_id}:user:#{user_id}:last_message"
-  # end
+  validates :body, presence: true
 
   def broadcast_to_other(ignore_user_ids = [])
     chat_room.users.each do |user|

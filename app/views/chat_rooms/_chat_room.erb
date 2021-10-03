@@ -1,5 +1,8 @@
-<div class='flex flex-row h-full items-stretch px-2'>
-  <div class='font-bold grid place-items-center'>
+<div class='flex flex-row h-full items-center space-x-2 px-2'>
+  <div class='flex-none'>
+    <div class='w-10 h-10 rounded-full bg-gray-200'></div>
+  </div>
+  <div class='flex-auto'>
     <%= chat_room.chatting_with(current_user).fullname %>
   </div>
 </div>

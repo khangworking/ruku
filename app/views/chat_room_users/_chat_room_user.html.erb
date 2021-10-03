@@ -1,14 +1,19 @@
 <%= turbo_frame_tag dom_id(chat_room_user) do %>
-  <%= link_to chat_room_user.chat_room, method: :get do %>
-    <div class='flex flex-row items-center p-2 hover:bg-gray-100'>
-      <div class='flex flex-col space-y-1'>
-        <div class='font-bold'>
-          <%= chat_room_user.chat_room.chatting_with(user).fullname %>
+  <div class='px-2 chat-room-user'>
+    <%= link_to chat_room_user.chat_room, method: :get do %>
+      <div class='flex flex-row items-center p-2 rounded-md hover:bg-gray-100 space-x-3' data-chats-target='chatRoomItem' data-action='click->chats#onChatRoomItemClicked'>
+        <div class='flex-none pointer-events-none'>
+          <div class='w-14 h-14 bg-gray-200 rounded-full'></div>
         </div>
-        <%= turbo_frame_tag "chat_room:#{chat_room_user.chat_room_id}:user:#{chat_room_user.user_id}:last_message" do %>
-          <%= render partial: 'messages/last_message', locals: { message: chat_room_user.chat_room.latest_message&.body } %>
-        <% end %>
+        <div class='flex flex-col flex-auto pointer-events-none'>
+          <div class='text-md text-gray-900 tracking-wide'>
+            <%= chat_room_user.chat_room.chatting_with(user).fullname %>
+          </div>
+          <%= turbo_frame_tag "chat_room:#{chat_room_user.chat_room_id}:user:#{chat_room_user.user_id}:last_message" do %>
+            <%= render partial: 'messages/last_message', locals: { message: chat_room_user.chat_room.latest_message&.body } %>
+          <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 <% end %>
