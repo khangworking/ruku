@@ -1,9 +1,11 @@
-<%= form_for message, html: { class: 'flex flex-row items-center space-x-3' } do |f| %>
+<%= form_for message do |f| %>
   <%= f.hidden_field :chat_room_id %>
-  <%= f.text_field :body, class: 'flex-auto w-full ring-0 focus:ring-0 border-0 bg-gray-200 rounded-full', autocomplete: 'off', placeholder: 'Aa' %>
-  <button type='submit' class='border-0 w-10 h-10 grid place-items-center duration-150 rounded-full ring-0 focus:ring-0 hover:bg-gray-100 '>
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-    </svg>
-  </button>
+  <div class='flex flex-row items-center space-x-3 px-2'>
+    <%= f.text_field :body, class: 'flex-auto w-full ring-0 focus:ring-0 border-0 bg-gray-200 rounded-full', autocomplete: 'off', placeholder: 'Aa' %>
+    <button type='submit' class='border-0 w-10 h-10 grid place-items-center duration-150 rounded-full ring-0 focus:ring-0 hover:bg-gray-100 '>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+      </svg>
+    </button>
+  </div>
 <% end %>
